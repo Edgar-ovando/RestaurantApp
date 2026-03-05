@@ -2,6 +2,8 @@
 
 ## 📌 Project Overview
 
+A modern iOS restaurant ordering application built with SwiftUI and Xcode, designed to deliver a smooth food-ordering experience for customers. The app integrates secure payments with Stripe, supports user accounts and provides a menu with appetizers views.
+
 This project is a **Mobile Restaurant App** developed using:
 
 - 🧑🏻‍💻 SwiftUI
