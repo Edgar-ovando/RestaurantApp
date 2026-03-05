@@ -1,4 +1,4 @@
-<h1>🧪 Mobile Restaurant App </h1>
+<h1>📱 Mobile Restaurant App </h1>
 
 ## 📌 Project Overview
 
@@ -38,7 +38,7 @@ This makes it ideal for mobile software development practice.
 
 ---
 
-## 🌐 Cross Browser Support
+## 🌐 Stripe Payments Support
 
 This framework supports execution on:
 
