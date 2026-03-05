@@ -12,11 +12,11 @@ This project is a **Mobile Restaurant App** developed using:
 
 The app contains typical e-commerce functionality such as:
 
-✅ User Registration
-✅ Login
-✅ Product search
-✅ Add to cart
-✅ Payments
+✅ User Registration  
+✅ Login  
+✅ Product search  
+✅ Add to cart  
+✅ Payments  
 ✅ Navigation across categories
 
 This makes it ideal for mobile software development practice.
