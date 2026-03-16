@@ -35,5 +35,16 @@ struct AlertContext{
                                               message: Text("Unable to complete your request at this time. Please check your internet connection and try again."),
                                               dismissButton: .default(Text("Ok")))
     
+    static let passwordMismatch = AlertItem(title: Text("Error"),
+                                            message: Text("Passwords do not match."),
+                                            dismissButton: .default(Text("Ok")))
+        
+    
+    static let registrationSuccess = AlertItem(title: Text("Success"),
+                                               message: Text("Customer registered successfully!"),
+                                               dismissButton: .default(Text("Ok")))
+ 
+
+    
     
 }

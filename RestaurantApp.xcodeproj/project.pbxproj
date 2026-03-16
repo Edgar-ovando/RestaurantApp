@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		654F52622F67999300E682BF /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 654F52612F67999300E682BF /* PhoneNumberKit */; };
 		D2E0F4112F3975A700929790 /* StripePaymentSheet in Frameworks */ = {isa = PBXBuildFile; productRef = D2E0F4102F3975A700929790 /* StripePaymentSheet */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				D2E0F4112F3975A700929790 /* StripePaymentSheet in Frameworks */,
+				654F52622F67999300E682BF /* PhoneNumberKit in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			name = RestaurantApp;
 			packageProductDependencies = (
 				D2E0F4102F3975A700929790 /* StripePaymentSheet */,
+				654F52612F67999300E682BF /* PhoneNumberKit */,
 			);
 			productName = RestaurantApp;
 			productReference = D23BB7112ECE8BEC001A07DE /* RestaurantApp.app */;
@@ -106,6 +109,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D2E0F40E2F39745000929790 /* XCRemoteSwiftPackageReference "stripe-ios" */,
+				654F52602F67999300E682BF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = D23BB7122ECE8BEC001A07DE /* Products */;
@@ -351,6 +355,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		654F52602F67999300E682BF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.8;
+			};
+		};
 		D2E0F40E2F39745000929790 /* XCRemoteSwiftPackageReference "stripe-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stripe/stripe-ios";
@@ -362,6 +374,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		654F52612F67999300E682BF /* PhoneNumberKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 654F52602F67999300E682BF /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
+		};
 		D2E0F4102F3975A700929790 /* StripePaymentSheet */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D2E0F40E2F39745000929790 /* XCRemoteSwiftPackageReference "stripe-ios" */;
