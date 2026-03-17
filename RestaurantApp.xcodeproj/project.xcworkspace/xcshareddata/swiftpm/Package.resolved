@@ -1,15 +1,6 @@
 {
-  "originHash" : "1fd7fe1ae108465fef62b9b980d129f6ebd8e728ac238f1f4313d164bab042f8",
+  "originHash" : "f8a0db239c6de4472428fbeb321c7ff5b436762d439ad53f723aadd3e23e5cb2",
   "pins" : [
-    {
-      "identity" : "phonenumberkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/marmelroy/PhoneNumberKit",
-      "state" : {
-        "revision" : "54f678c2fb115e68bb173face494954c1de9df10",
-        "version" : "4.2.8"
-      }
-    },
     {
       "identity" : "stripe-ios",
       "kind" : "remoteSourceControl",

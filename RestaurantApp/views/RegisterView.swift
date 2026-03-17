@@ -11,7 +11,7 @@ struct RegisterView: View {
     
     @State private var name: String = ""
     @State private var email: String = ""
-    @State private var phoneNumber: String = ""
+    @State private var phone: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     @State private var hidePassword: Bool = true
@@ -19,6 +19,15 @@ struct RegisterView: View {
     @State private var customer: Customer?
     @State private var alertItem: AlertItem?
     @State var isLoading = false
+    
+    //PhoneData
+    @State private var selectedCountry: Country = countries.first!
+    @State private var showPicker = false
+    
+    var fullNumber: String {
+        "\(selectedCountry.dialCode) \(phone)"
+    }
+    
     
     var body: some View {
         
@@ -49,8 +58,42 @@ struct RegisterView: View {
                     .modifier(InputField())
                     
                     // Phone
-                    PhoneNumberField(text: $phoneNumber)
-                        .modifier(InputField())
+                    
+                    VStack() {
+                        
+                        HStack() {
+                            
+                            // Selector de país
+                            Button {
+                                showPicker = true
+                            } label: {
+                                HStack() {
+                                    Text(selectedCountry.flag)
+                                    
+                                    Text(selectedCountry.dialCode)
+                                        .foregroundColor(.primary)
+                                    
+                                    Image(systemName: "chevron.down")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            
+                            Divider()
+                                .frame(height: 20)
+                            
+                            // Input
+                            TextField("Phone number", text: $phone)
+                                .keyboardType(.phonePad)
+                        }
+                        
+                    }
+                    .modifier(InputField())
+                    .sheet(isPresented: $showPicker) {
+                        CountryPickerView(selectedCountry: $selectedCountry)
+                    }
+                    
+                 
                     
                     // Password
                     HStack {
@@ -124,6 +167,8 @@ struct RegisterView: View {
     func createCustomer() {
         
         isLoading = true
+        print("Number: ", phone)
+        
         
         // Validar passwords
         guard password == confirmPassword else {
@@ -135,7 +180,7 @@ struct RegisterView: View {
             id: UUID(),
             name: name,
             email: email,
-            phone: phoneNumber,
+            phone: phone,
             password: password,
             address: "Not Provided",
             city: "Not Provided"
@@ -169,11 +214,6 @@ struct RegisterView: View {
                         alertItem = AlertContext.unabletoComplete
                     }
                 }
-                    
-                    
-                    
-                    
-                    
 
             }
         }
