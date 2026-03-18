@@ -238,7 +238,7 @@ struct RegisterView: View {
                 switch result {
                 
                 case .success(let customers):
-                    self.customer = customers.first
+                    self.customer = customers
                     alertItem = AlertContext.registrationSuccess
                 
                 case .failure(let error):
