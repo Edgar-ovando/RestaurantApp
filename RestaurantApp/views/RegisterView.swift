@@ -218,8 +218,10 @@ struct RegisterView: View {
         isLoading = true
         print("Number: ", fullNumber)
         
+        // Validación de password
         guard password == confirmPassword else {
             alertItem = AlertContext.passwordMismatch
+            isLoading = false
             return
         }
         
@@ -232,28 +234,34 @@ struct RegisterView: View {
             city: "Not Provided"
         )
         
-        CustomerService.shared.postCustomer(customer: newCustomer) { result in
-            DispatchQueue.main.async {
-                isLoading = false
-                switch result {
+        // Usamos Task para llamar a async function desde UI / MainActor
+        Task {
+            do {
+                // Llamada a la función async
+                let createdCustomer = try await CustomerService.shared.postCustomer(customer: newCustomer)
                 
-                case .success(let customers):
-                    self.customer = customers
-                    alertItem = AlertContext.registrationSuccess
-                
-                case .failure(let error):
-                    switch error {
-                    case .invalidResponse:
-                        alertItem = AlertContext.invalidResponse
-                    case .invalidURL:
-                        alertItem = AlertContext.invalidURL
-                    case .invalidData:
-                        alertItem = AlertContext.invalidData
-                    case .unabletoComplete:
-                        alertItem = AlertContext.unabletoComplete
-                    }
+                // Como estamos en MainActor (Task por default hereda), podemos actualizar UI
+                self.customer = createdCustomer
+                alertItem = AlertContext.registrationSuccess
+            } catch let error as myError {
+                // Manejo de errores personalizado
+                switch error {
+                case .invalidResponse:
+                    alertItem = AlertContext.invalidResponse
+                case .invalidURL:
+                    alertItem = AlertContext.invalidURL
+                case .invalidData:
+                    alertItem = AlertContext.invalidData
+                case .unabletoComplete:
+                    alertItem = AlertContext.unabletoComplete
                 }
+            } catch {
+                // Manejo de errores generales
+                alertItem = AlertContext.unabletoComplete
             }
+            
+            // Se ejecuta siempre al final
+            isLoading = false
         }
     }
 }
