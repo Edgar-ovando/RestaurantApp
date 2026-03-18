@@ -55,7 +55,7 @@ struct CountryPickerView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(filteredCountries) { country in
                 Button {
                     selectedCountry = country

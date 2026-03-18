@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct Customer: Codable, Identifiable {
-    
-    let id: UUID
+struct Customer: Codable {
+
     let name: String
     let email: String
     let phone: String

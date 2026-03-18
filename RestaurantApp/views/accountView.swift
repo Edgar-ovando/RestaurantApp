@@ -14,6 +14,15 @@ struct accountView: View {
     @State private var message: String = ""
     @State private var hidePassword: Bool = true
     
+    
+    // FocusState para manejar teclado
+    enum Field: Hashable {
+        case email, password
+    }
+    
+    @FocusState private var focusedField: Field?
+    
+    
     var body: some View {
         
         ZStack {
@@ -24,10 +33,6 @@ struct accountView: View {
                     
                     VStack(spacing: 20) {
                         
-                        Spacer()
-                            .frame(height: 40)
-                        
-                        
                         if !message.isEmpty {
                             Text(message)
                                 .foregroundColor(.red)
@@ -35,10 +40,12 @@ struct accountView: View {
                         
                         
                         // Email field
+                        
                         TextField("Email", text: $email)
                             .keyboardType(.emailAddress)
+                            .textContentType(.emailAddress)
                             .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled(true)
+                            .focused($focusedField, equals: .email)
                             .frame(height: 25)
                             .padding()
                             .background(Color(.systemGray6))
@@ -48,8 +55,10 @@ struct accountView: View {
                         HStack {
                             if hidePassword {
                                 SecureField("Password", text: $password)
+                                    .focused($focusedField, equals: .password)
                             } else {
                                 TextField("Password", text: $password)
+                                    .focused($focusedField, equals: .password)
                             }
                             
                             Button(action: {
@@ -141,7 +150,12 @@ struct accountView: View {
                         
                     }
                     .padding(.horizontal, 25)
+                    .padding(.top,40)
                     
+                }
+                // TapGesture para cerrar teclado al tocar fuera
+                .onTapGesture {
+                    focusedField = nil
                 }
 
             }

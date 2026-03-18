@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class NetworkManager{
+final class AppetizerService{
     
-    static let shared = NetworkManager()
+    static let shared = AppetizerService()
     private let cache = NSCache<NSString, UIImage>()
     
     //Gateway API 

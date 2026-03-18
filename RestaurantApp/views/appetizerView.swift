@@ -57,7 +57,7 @@ struct appetizerView: View {
         
         isLoading = true
         
-        NetworkManager.shared.getAppetizers { [self] result in
+        AppetizerService.shared.getAppetizers { [self] result in
             
             DispatchQueue.main.async {
                 

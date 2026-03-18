@@ -13,7 +13,7 @@ final class CustomerService {
     static let shared = CustomerService()
     
     // Gateway API
-    static let baseURL = "http://localhost:8085/api/customers/"
+    static let baseURL = "http://localhost:8085/api/customers"
     
     func postCustomer(customer: Customer, completed: @escaping (Result<[Customer], myError>) -> Void) {
         
