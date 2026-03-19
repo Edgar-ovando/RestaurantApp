@@ -9,6 +9,9 @@ import SwiftUI
 
 struct AccountView: View {
     
+    // Variable de Sesion Login
+    @EnvironmentObject var session: SessionManager
+    
     @State private var name: String = ""
     @State private var extraNapkins: Bool = false
     @State private var frequentRefill: Bool = false
@@ -61,6 +64,23 @@ struct AccountView: View {
                            
                         
                     }
+                    
+                    // Logout Button
+                    
+                    Button {
+                        
+                        logOut()
+                        
+                    } label: {
+                        Text("Sign Out")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.brand)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
 
                     
                 }
@@ -74,6 +94,12 @@ struct AccountView: View {
         }
    
     } // End View
+    
+    func logOut(){
+        
+        session.logout()
+        
+    }
     
     
     

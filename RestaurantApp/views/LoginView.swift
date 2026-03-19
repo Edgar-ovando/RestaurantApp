@@ -9,6 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     
+    // Variable de Sesion Login
+    @EnvironmentObject var session: SessionManager
+    
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var message: String = ""
@@ -173,7 +176,9 @@ struct LoginView: View {
         
         // Simulated login logic
         if email == "test@email.com" && password == "123456" {
-            message = "Login successful"
+            
+            session.login() // ✅ Sesion de Exitosa de Login
+          
         } else {
             message = "Invalid credentials"
         }
