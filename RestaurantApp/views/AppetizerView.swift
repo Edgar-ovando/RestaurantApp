@@ -11,8 +11,10 @@ struct AppetizerView: View {
     
     @State private var appetizers: [Appetizer] = []
     @State var alertItem: AlertItem?
+    
     @State var isLoading = false
     @State private var isShowingDetail = false
+    
     @State private var selectedAppetizer: Appetizer?
     
     var body: some View {

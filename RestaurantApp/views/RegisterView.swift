@@ -18,7 +18,10 @@ struct RegisterView: View {
     @State private var hideConfirmPassword: Bool = true
     @State private var customer: Customer?
     @State private var alertItem: AlertItem?
+    
+    
     @State var isLoading = false
+    
     
     // Phone picker
     @State private var selectedCountry: Country = countries.first!
@@ -207,6 +210,11 @@ struct RegisterView: View {
                 }
             }
             
+            if isLoading
+            {
+                LoadingView()
+            }
+            
             
         }
        
@@ -215,13 +223,18 @@ struct RegisterView: View {
     
     // MARK: - Post Customer
     func createCustomer() {
-        isLoading = true
+        
+    
+        isLoading = true  // Arrancamos el loading circle
+    
+        
         print("Number: ", fullNumber)
         
         // Validación de password
         guard password == confirmPassword else {
             alertItem = AlertContext.passwordMismatch
             isLoading = false
+           
             return
         }
         
@@ -243,15 +256,20 @@ struct RegisterView: View {
                 // Como estamos en MainActor (Task por default hereda), podemos actualizar UI
                 self.customer = createdCustomer
                 alertItem = AlertContext.registrationSuccess
+                
             } catch let error as myError {
                 // Manejo de errores personalizado
                 switch error {
+                
                 case .invalidResponse:
                     alertItem = AlertContext.invalidResponse
+                
                 case .invalidURL:
                     alertItem = AlertContext.invalidURL
+                
                 case .invalidData:
                     alertItem = AlertContext.invalidData
+                
                 case .unabletoComplete:
                     alertItem = AlertContext.unabletoComplete
                 }
@@ -262,8 +280,24 @@ struct RegisterView: View {
             
             // Se ejecuta siempre al final
             isLoading = false
+            cleanForm()
+           
         }
     }
+    
+    func cleanForm(){
+        
+        name = ""
+        email = ""
+        phone = ""
+        password = ""
+        confirmPassword = ""
+        
+        
+        
+    }
+    
+    
 }
 
 // MARK: - Input Field Modifier
