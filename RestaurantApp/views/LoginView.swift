@@ -1,19 +1,18 @@
 //
-//  accountView.swift
+//  LoginView.swift
 //  RestaurantApp
 //
-//  Created by EDGAR MIGUEL FLORES OVANDO on 19/11/25.
+//  Created by Edgar Ovando on 18/03/26.
 //
 
 import SwiftUI
 
-struct accountView: View {
+struct LoginView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var message: String = ""
     @State private var hidePassword: Bool = true
-    
     
     // FocusState para manejar teclado
     enum Field: Hashable {
@@ -83,7 +82,10 @@ struct accountView: View {
                         }
                         
                         // Login button
-                        Button(action: login) {
+                        Button {
+                            login()
+                        } label: {
+                            
                             Text("Login")
                                 .font(.title3)
                                 .fontWeight(.semibold)
@@ -92,7 +94,7 @@ struct accountView: View {
                                 .background(Color.brand)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
-                        } .navigationTitle("👤 Account")
+                        }
                         
                         // Sign Up
                         HStack {
@@ -149,6 +151,7 @@ struct accountView: View {
                         Spacer()
                         
                     }
+                    .navigationTitle("Login")
                     .padding(.horizontal, 25)
                     .padding(.top,40)
                     
@@ -160,8 +163,7 @@ struct accountView: View {
 
             }
         }
-   
-    } // End View
+    }
     
     func login() {
         if email.isEmpty || password.isEmpty {
@@ -177,11 +179,8 @@ struct accountView: View {
         }
     }
     
-    
 }
 
-
-
 #Preview {
-    accountView()
+    LoginView()
 }

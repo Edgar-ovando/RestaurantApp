@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct orderView: View {
+struct OrderView: View {
     var body: some View {
         NavigationStack{
             Text("Order View")
@@ -20,5 +20,5 @@ struct orderView: View {
 }
 
 #Preview {
-    orderView()
+    OrderView()
 }

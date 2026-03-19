@@ -10,17 +10,17 @@ import SwiftUI
 struct mainView: View {
     var body: some View {
         TabView{
-            appetizerView()
+            AppetizerView()
                 .tabItem{
                     Image(systemName: "house")
                     Text("Home")
                 }
-            accountView()
+            AccountView()
                 .tabItem{
                     Image(systemName: "person")
                     Text("Account")
                 }
-            orderView()
+            OrderView()
                 .tabItem{
                     Image(systemName: "bag")
                     Text("Order")

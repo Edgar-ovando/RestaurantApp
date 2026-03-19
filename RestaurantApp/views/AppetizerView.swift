@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct appetizerView: View {
+struct AppetizerView: View {
     
     @State private var appetizers: [Appetizer] = []
     @State var alertItem: AlertItem?
@@ -87,5 +87,5 @@ struct appetizerView: View {
 }
 
 #Preview {
-    appetizerView()
+    AppetizerView()
 }
