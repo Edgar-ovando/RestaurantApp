@@ -17,6 +17,9 @@ struct LoginView: View {
     @State private var message: String = ""
     @State private var hidePassword: Bool = true
     
+    //Loading Circle
+    @State private var isLoading: Bool = false
+    
     // FocusState para manejar teclado
     enum Field: Hashable {
         case email, password
@@ -165,22 +168,52 @@ struct LoginView: View {
                 }
 
             }
+            
+            if isLoading {
+                LoadingView()
+            }
         }
     }
     
     func login() {
+        
+        
+        isLoading = true
+        
+        // Validamos que los campos no estén vacíos
         if email.isEmpty || password.isEmpty {
+            isLoading = false
             message = "Please fill all fields"
-            return
+            return // Salimos de la función si falta información
         }
         
-        // Simulated login logic
-        if email == "test@email.com" && password == "123456" {
-            
-            session.login() // ✅ Sesion de Exitosa de Login
+        // Creamos una tarea asíncrona porque vamos a usar await
+        Task {
+            do {
+                
+                // Llamamos al servicio de login enviando email y password
+                // Si las credenciales son correctas, devuelve un Customer
+                let customer = try await CustomerService.shared.loginCustomer(email: email, password: password)
+                
+                // Debug: imprimimos el nombre del usuario en consola
+                print("Bienvenido \(customer.name)")
+                
+                // Actualizamos la UI en el hilo principal (MainActor)
+                await MainActor.run {
+                    message = ""          // Limpiamos mensaje de error
+                    session.login()       // Marcamos sesión como iniciada
+                    isLoading = false
+                }
+                
+            } catch {
+                
+                // Si ocurre un error (credenciales incorrectas o fallo de red)
+                await MainActor.run {
+                    message = "Invalid credentials"
+                    isLoading = false
+                }
+            }
           
-        } else {
-            message = "Invalid credentials"
         }
     }
     
