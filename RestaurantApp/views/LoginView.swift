@@ -209,7 +209,7 @@ struct LoginView: View {
                 
                 // Si ocurre un error (credenciales incorrectas o fallo de red)
                 await MainActor.run {
-                    message = "Invalid credentials"
+                    message = "❌ Invalid credentials"
                     isLoading = false
                 }
             }
